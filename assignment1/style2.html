@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+
+    <!--상단 초록색 부분-->
+    <div id="top">
+        <div id="header">
+            <h1 style = "font-size: 60px; margin-top : -10px;">Welcome to 22100767 Homepage</h1>
+            <p style ="margin-top: -20px; font-size: 30px;">Use the Menu to select different Stylesheets</p>
+        </div>
+    </div>
+
+    <br>
+
+    <div id = white>
+        <!--가운데 3등분-->
+        <div id="middle">
+            <div class="main_container">
+                <!-- 본문 중간 -->
+                <h1 style="color: orangered; ">
+                    Same Page Different Stylesheets
+                </h1>
+
+                <div>
+                    This is a demonstration of how different stylesheets can change the layout of your HTML page. You
+                    can
+                    change
+                    the
+                    layout of this page by selecting different stylesheets in the menu, or by selecting one of the
+                    following
+                    links:
+                </div>
+
+
+                <a href="style1.html" id=url>Stylesheet1</a>,
+                <a href="style2.html" id=url>Stylesheet2</a>,
+                <a href="style3.html" id=url>Stylesheet3</a>,
+                <a href="style4.html" id=url>Stylesheet4</a>.
+
+                <h2 style="color: orangered;">
+                    No styles
+                </h2>
+
+                <div>
+                    This page uses DIV elements to group different sections of the HTML page. Click here to see how the
+                    page
+                    looks
+                    like with no stylesheet:
+                </div>
+
+                <a href="index.html" id=url>No Stylesheet</a>.
+            </div>
+        </div>
+        <div class="menu_container">
+            <div id="menu">
+                <!--메뉴바-->
+                <a href="style1.html" id="stylesheet">Stylesheet 1</a>
+                <a href="style2.html" id="stylesheet2">Stylesheet 2</a>
+                <a href="style3.html" id="stylesheet">Stylesheet 3</a>
+                <a href="style4.html" id="stylesheet">Stylesheet 4</a>
+                <a href="index.html" id="stylesheet">No Stylesheet</a>
+
+            </div>
+        </div>
+    </div>
+    <div id="side-bar">
+        <!--아래 파란색 사이드 바-->
+        <h3>
+            Side-Bar
+        </h3>
+        <div>
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
+            laoreet
+            dolore magna aliquam erat volutpat.
+        </div>
+    </div>
+
+
+    <br />
+
+    <!--하단 작게-->
+    <div id="bottom">
+        <div>
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet
+            dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
+            suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in
+            vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et
+            accumsan et
+            iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla
+            facilisi.
+        </div>
+    </div>
+
+
+
+</body>
+
+<!--기본 스타일-->
+<style>
+    body {
+        font-family: "Arial", sans-serif;
+        margin: 20px;
+        padding: 3px;
+        background-color: tomato;
+
+    }
+
+</style>
+
+<!--stylesheet 1 -->
+<style>
+    
+    #header {
+        color: white;
+        padding-left: 10px;
+        width: auto;
+    }
+
+    #stylesheet {
+        display: block;
+        margin-bottom: 5px;
+        background-color: tomato;
+        padding: 5px;
+        border-radius: 20px;
+        text-decoration: none;
+        color: white;
+        border: 1px solid tomato;
+        width: 150px;
+        text-align: center;
+
+    }
+
+    #stylesheet2 {
+        display: block;
+        margin-bottom: 5px;
+        background-color: white;
+        padding: 5px;
+        border-radius: 20px;
+        text-decoration: none;
+        color: tomato;
+        font-weight: bold;
+        border: 1px solid tomato;
+        width: 150px;
+        text-align: center;
+    }
+
+
+    #side-bar {
+        width: 20%;
+        background-color:rgb(255, 201, 201);
+        padding: 10px;
+        /* border-radius: 3px; */
+        color: tomato;
+        width: auto;
+        margin-top: -5px;
+        height: 100px;
+    }
+
+   
+
+    #white {
+        display: flex;
+        background-color: white;
+        width: auto;
+        padding: 5px;
+        height : auto;
+        
+
+    }
+
+    #main_container {
+        display: inline-block;
+        height : auto;
+        padding-bottom: 20px;
+    }
+
+    #menu_container {
+        display: inline-block;
+        height : auto;
+        margin-top: 20px;
+        padding-bottom: 20px;
+    }
+     #menu {
+        padding-right: 10px;
+
+    }
+
+    #bottom {
+        font-size: 10px;
+        color: white;
+        /* padding: 10px; */
+        border-radius: 5px;
+        margin-top: -15px;
+        width: auto;
+        text-align: center;
+        line-height: 17px;
+    }
+
+    #url {
+        color: tomato;
+        text-decoration: none;
+    }
+
+    #url:hover {
+        text-decoration: underline;
+    }
+</style>
+
+
+
+</html>

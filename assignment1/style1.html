@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+
+    <!--상단 초록색 부분-->
+    <div id="top">
+        <div id="header">
+            <h1>Welcome to 22100767 Homepage</h1>
+            <p style="margin-top: -20px;">Use the Menu to select different Stylesheets</p>
+        </div>
+    </div>
+
+    <br>
+
+    <!--가운데 3등분-->
+    <div id="middle">
+        <div id="menu">
+            <!--메뉴바-->
+                <a href="style1.html" id="stylesheet1">Stylesheet 1</a>
+                <a href="style2.html" id="stylesheet">Stylesheet 2</a>
+                <a href="style3.html" id="stylesheet">Stylesheet 3</a>
+                <a href="style4.html" id="stylesheet">Stylesheet 4</a>
+                <a href="index.html" id="stylesheet">No Stylesheet</a>
+
+        </div>
+        <div id="content">
+            <!-- 본문 중간 -->
+            <h1>
+                Same Page Different Stylesheets
+            </h1>
+
+            <div>
+                This is a demonstration of how different stylesheets can change the layout of your HTML page. You can
+                change
+                the
+                layout of this page by selecting different stylesheets in the menu, or by selecting one of the following
+                links:
+            </div>
+
+
+            <a href="style1.html" id = url>Stylesheet1</a>,
+            <a href="style2.html" id = url>Stylesheet2</a>,
+            <a href="style3.html" id = url>Stylesheet3</a>,
+            <a href="style4.html" id = url>Stylesheet4</a>.
+
+            <h2>
+                No styles
+            </h2>
+
+            <div>
+                This page uses DIV elements to group different sections of the HTML page. Click here to see how the page
+                looks
+                like with no stylesheet:
+            </div>
+
+            <a href="index.html" id = url>No Stylesheet</a>.
+
+        </div>
+        <div id="side-bar">
+            <!--우측 파란색 사이드 바-->
+            <h3>
+                Side-Bar
+            </h3>
+            <div>
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
+                laoreet
+                dolore magna aliquam erat volutpat.
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <!--하단 작게-->
+    <div id="bottom">
+        <div>
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet
+            dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
+            suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in
+            vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et
+            accumsan et
+            iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla
+            facilisi.
+        </div>
+    </div>
+
+
+
+</body>
+
+<!--기본 스타일-->
+<style>
+    body {
+        font-family: "Arial", sans-serif;
+        margin: 20px;
+        padding: 3px;
+
+    }
+
+    li {
+        margin-bottom: 5px;
+    }
+
+    a:active {
+        color: tomato;
+    }
+</style>
+
+<!--stylesheet 1 -->
+<style>
+    #menu {
+        padding-right: 10px;
+        
+    }
+
+    #stylesheet1 {
+        display: block;
+        margin-bottom: 5px;
+        background-color: seagreen;
+        padding: 5px;
+        border-radius: 3px;
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        border: 0.1px solid rgb(148, 148, 148);
+        width: 200px;
+    }
+
+    #stylesheet{
+        display: block;
+        margin-bottom: 5px;
+        background-color: whitesmoke;
+        padding: 5px;
+        border-radius: 3px;
+        text-decoration: none;
+        color: black;
+        border: 0.1px solid rgb(148, 148, 148);
+        width: 200px;
+    }
+
+    #content {
+        width: 65%;
+        line-height: 1.4;
+    }
+
+   #side-bar {
+        width: 15%;
+        background-color: rgb(84, 137, 236);
+        padding: 10px;
+        border-radius: 3px;
+        color: white;
+        margin-left: 10px;
+        line-height: 2;
+        height: auto;
+    }
+
+    #top {
+        background-color: seagreen;
+        padding: 10px;
+        border-radius: 3px;
+    }
+    #header {
+        color: white;
+        padding-left : 10px;
+    }
+
+     #middle {
+        display: flex;
+        justify-content: space-between;
+        height: 300px   ;
+    }
+    #bottom {       
+        font-size: 11px;
+        background-color: lightgray;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    #url {
+        color: black;
+    }
+
+    #url:hover {
+        text-decoration: none;
+    }
+
+    
+</style>
+
+
+
+</html>
