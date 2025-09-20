@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Form.html</title>
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .wrap {
+            width: min(720px, 96vw);
+        }
+
+        .card {
+            border: 1px solid rgb(0, 0, 0);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+        }
+
+        .header {
+            padding: 20px 22px;
+            border-bottom: 1px solid rgb(0, 0, 0);
+        }
+
+        .title {
+            margin: 0 0 4px;
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            margin: 0;
+            font-size: 13px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            padding: 18px 22px;
+            border-bottom: 1px solid rgb(0, 0, 0);
+        }
+
+        .field {
+            flex: 1;
+            display: flex;
+            gap: 10px;
+
+        }
+
+        input[type="text"] {
+            flex: 1;
+            border: 1px solid rgb(0, 0, 0);
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-size: 15px;
+            width: 500px;
+        }
+
+        button {
+            border: 1px solid rgb(0, 0, 0);
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-weight: 700;
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        .list {
+            list-style: none;
+            padding: 10px 10px 18px;
+            margin: 0;
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        }
+
+        .remove {
+            background: transparent;
+            border: 1px dashed rgb(127, 29, 29);
+            padding: 6px 10px;
+            border-radius: 8px;
+        }
+
+        .item {
+            border: 1px solid rgb(0, 0, 0);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 20px 0 28px;
+        }
+
+        .footer {
+            padding: 12px 22px 18px;
+            border-top: 1px dashed rgb(0, 0, 0);
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="wrap">
+        <section class="card" aria-labelledby="card-title">
+            <header class="header">
+                <h1 id="card-title" class="title">Dynamic Web Page</h1>
+            </header>
+
+            <!-- form으로 의미화: Enter 키는 submit으로 자연 처리 -->
+            <form id="Controls" class="controls" role="group" aria-label="아이템 추가/삭제">
+                <div class="field">
+                    <label class="sr-only" for="Input" />
+                    <input id="Input" name="item" type="text" placeholder="추가할 내용을 입력해주세요" autocomplete="off" />
+                </div>
+                <button id="AddBtn" type="submit" title="추가">추가</button>
+                <button id="ClearBtn" type="button" title="모두 삭제">삭제</button>
+            </form>
+
+            <ul id="List" class="list" aria-live="polite"></ul>
+            <div id="emptyState" class="empty">항목이 없습니다. 텍스트를 추가해주세요.</div>
+
+            <div class="footer">
+                <span id="count">총 0개</span>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', function ready() {
+            const form = document.getElementById('Controls');
+            const input = document.getElementById('Input');
+            const list = document.getElementById('List');
+            const empty = document.getElementById('emptyState');
+            const count = document.getElementById('count');
+            const btnClr = document.getElementById('ClearBtn');
+
+            function updateEmptyState() {
+                const hasItems = list.children.length > 0;
+                empty.style.display = hasItems ? 'none' : 'block';
+                count.textContent = `총 ${list.children.length}개`;
+            }
+
+            function addItem(text) {
+                const li = document.createElement('li');
+                li.className = 'item';
+                // 템플릿은 고정 HTML만, user text는 textContent로 안전하게
+                const span = document.createElement('span');
+                span.className = 'text';
+                span.textContent = text;
+
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'remove';
+                btn.title = '개별 삭제';
+                btn.textContent = '삭제';
+
+                li.append(span, btn);
+                list.appendChild(li);
+                updateEmptyState();
+            }
+
+            // form submit으로 Enter/버튼 모두 처리
+            form.addEventListener('submit', (ev) => {
+                ev.preventDefault();
+                const text = input.value.trim();
+                if (!text) { input.focus(); return; }
+                addItem(text);
+                input.value = '';
+                input.focus();
+            });
+
+            // 이벤트 위임: 개별 삭제
+            list.addEventListener('click', (ev) => {
+                if (ev.target && ev.target.classList.contains('remove')) {
+                    ev.target.closest('.item')?.remove();
+                    updateEmptyState();
+                }
+            });
+
+            // 전체 삭제
+            btnClr.addEventListener('click', () => {
+                list.innerHTML = '';
+                updateEmptyState();
+                input.focus();
+            });
+
+            updateEmptyState();
+        });
+    </script>
+</body>
+
+</html>
