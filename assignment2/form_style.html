@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form_nostyle.html</title>
+
+    <style>
+
+        :root{
+        --card:#ffffff;        /* 카드 배경 */
+        --line:#e5e7eb;        /* 구분선 */
+        --sub:#6b7280;         /* 보조 텍스트 */
+        --text:#111111;        /* 본문 텍스트 */
+        --muted:#f3f4f6;       /* 합계 줄 배경 */
+        --green:#15803d;       /* 프로모코드 색 */
+        --btn:#4b5563;         /* Redeem 버튼 */
+        --btn-text:#ffffff;
+        }
+
+        
+        body{
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* horizontal centering */
+            justify-content: flex-start; /* keep content top-aligned */
+            background-color: rgb(247, 247, 247);
+        }
+        /* two-column form row helpers */
+        .form-row{
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 960px;
+        }
+        .field{
+            flex: 1 1 280px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        #row{
+            display : inline-flex;
+        }
+
+        #column{
+            display : inline-grid; 
+        }
+        #img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+        #img img {
+            width: 80px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .maincontainer{
+            width:100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            margin-top: 30px;
+            gap : 24px;
+            max-width: 960px;
+        }
+
+        .formContainer{ 
+            width:560px; 
+        }
+        
+        /* your cart */
+
+        
+        .cart-wrap{ 
+            width:360px; 
+            
+        }
+
+        .cart-title{
+        display:flex; align-items:center; justify-content:space-between;
+        margin-bottom:12px; color:#2563eb; font-weight:700; font-size:28px;
+        }
+
+        .itemNum{
+        display:inline-flex; align-items:center; justify-content:center;
+        width:44px; height:44px; border-radius:999px; background:#e5edff; color:#2563eb; font-weight:700;
+        }
+
+        .cart{
+        background:var(--card); border-radius:12px;
+        box-shadow:0 1px 0 rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.06);
+        overflow:hidden;
+        }
+
+        .cart-row{
+        display:flex; align-items:flex-start; justify-content:space-between;
+        padding:16px 18px; border-bottom:1px solid var(--line);
+        }
+        .cart-row:last-child{ border-bottom:0; }
+        .item-title{ font-weight:600; color:var(--text); }
+        .item-desc{ font-size:13px; color:var(--sub); margin-top:4px; }
+        .price{ font-weight:600; }
+        .promo{ color:var(--green); }
+        .promo .price{ color:var(--green); }
+        .total{ background:var(--muted); }
+        .total .price{ font-size:20px; font-weight:800; }
+        .total .label{ font-weight:600; }
+
+        .redeem{
+        margin-top:16px; background:var(--card); border-radius:12px; padding:12px;
+        box-shadow:0 1px 0 rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.06);
+        }
+        .input-group{ display:flex; gap:8px; }
+        .input-group input{
+        flex:1; height:44px; border:1px solid var(--line); border-radius:8px;
+        padding:0 12px; font-size:15px; outline:none;
+        }
+        .input-group button{
+        height:44px; padding:0 16px; border:none; border-radius:8px;
+        background:var(--btn); color:var(--btn-text); font-weight:600; cursor:pointer;
+        }
+
+        /* 입력 요소 공통 */
+        input[type="text"], input[type="email"], input[type="month"], select, textarea{
+        height:34px; padding:6px 10px;
+        border:1px solid #ced4da; border-radius:6px; background:#fff;
+        box-sizing:border-box;
+        }
+        textarea{ height:auto; }
+
+        /* 라벨 간격/톤 */
+        label{ font-size:14px; color:#111; margin-bottom:4px; display:inline-block; }
+
+        /* 제출 버튼(왼쪽 폼 하단) */
+        .formContainer input[type="submit"]{
+        display:block; width:100%; height:42px; border:none; border-radius:8px;
+        background:#2563eb; color:#fff; font-weight:700; cursor:pointer;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    
+    <div id="img">
+        <img src="./img.png" alt="로고 이미지">
+    </div>
+    
+    <div style="font-size: 30px; display: flex; justify-content: center; align-items: center; margin: 20px 0;">
+        Checkout form
+    </div>
+
+    <div 
+    style = "display : flex; justify-content: center; text-align: center; max-width: 960px;"> 
+        Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.
+    </div>
+<div class = "maincontainer">
+    <div class = "formContainer">
+        <div> Billing address </div>
+        <form action = "billing.html" method = "post">
+           
+           <div class="form-row">
+                <div class="field">
+                    <label for="FirstName">First name</label>
+                    <input type="text" id="FirstName" name="FirstName" />
+                </div>
+                <div class="field">
+                    <label for="LastName">Last name</label>
+                    <input type="text" id="LastName" name="LastName" />
+                </div>
+            </div>
+            <br /> <br />
+
+            <label for = "Username"> Username </label> <br />
+            
+            <div id = "row">
+            <div> @ </div>
+            <input type = "text" id = "Username" name = "Username" placeholder="Username" />
+            </div>
+
+            <br /> <br />
+            <label for = "Email"> Email <span> (Optional) </span> </label> <br />
+            <input type = "email" id = "Email" name = "Email" placeholder="Email" />
+            <br /> <br />
+
+            <label for = "Address"> Address </label> <br />
+            <input type = "text" id = "Address" name = "Address" placeholder="1234 Main St" />
+            <br /> <br />
+
+            <label for = "Address2"> Address 2 <span> (Optional) </span> </label> <br />
+            <input type = "text" id = "Address2" name = "Address2" placeholder="Apartment or suite" />
+            <br /> <br />
+
+            <div id = "row">
+
+            <label for = "Country"> Country </label> <br />
+            <select id = "Country" name = "Country">
+                <option value="">Choose...</option>
+                <option value="country1">United States</option>
+            </select>
+
+            <label for = "State"> State </label> <br />
+            <select id = "State" name = "State">
+                <option value="">Choose...</option>
+                <option value="state1">Korea</option>
+            </select>
+
+            <label for = "Zip"> Zip </label> <br />
+            <input type = "text" id = "Zip" name = "Zip" />
+
+            </div>
+
+            <!-- 구분 선 -->
+
+            <br /> <br />
+
+            <div class = "checkbox" > <!-- column으로 할 것 -->
+                <input type = "checkbox" id = "sameaddress" name = "sameaddress" />
+                <label for = "sameaddress"> Shipping address is the same as my billing address </label> <br/>
+                
+                <input type = "checkbox" id = "saveinfo" name = "saveinfo" />
+                <label for = "saveinfo"> Save this information for next time </label>
+
+                <br/><br/>
+
+                <label for="moreRequest">More requests about Shipping (Optional)</label> <br/>
+                <textarea id="moreRequest" name="moreRequest" rows="3" placeholder="Enter any additional shipping requests here" style="width: 300px"></textarea> 
+                <br/><br/>
+
+            </div>
+
+            <!-- 구분 선 -->
+
+            <div> Payment </div>
+            <input type = "radio" id = "credit" name = "payment" checked />
+            <label for = "credit"> Credit card </label> <br />
+
+            <input type = "radio" id = "debit" name = "payment" />
+            <label for = "debit"> Debit card </label> <br />
+
+            <input type = "radio" id = "paypal" name = "payment" />
+            <label for = "paypal"> Paypal </label> <br />
+
+            <br />
+
+            <div class="form-row" style="flex-wrap: nowrap; align-items: flex-start;">
+                <div class="field" style="flex: 0 0 auto;">
+                    <label for="nameoncard">Name on card</label>
+                    <input type="text" id="nameoncard" name="nameoncard" style="width: 260px;" />
+                    <small style="color: #6c757d; font-size: 12px; display: block; margin-top: 4px;">Full name as displayed on card</small>
+                </div>
+                <div class="field" style="flex: 0 0 auto;">
+                    <label for="creditcardnumber">Credit card number</label>
+                    <input type="text" id="creditcardnumber" name="creditcardnumber" style="width: 300px;" />
+                </div>
+            </div>
+
+            <div id = "row">
+                <label for = "expiration"> Expiration </label>
+                <input type="month" id="expirationDate" name="expirationDate" />
+                
+                <label for = "cvv"> CVV </label>
+                <input type = "text" id = "cvv" name = "cvv" />
+            </div>
+
+            <!-- 여기 구분선 -->
+            <input type = "submit" value = "Continue to checkout" />
+
+
+        </form>
+
+    </div>
+    <div class="Your cart">
+        <div class="cart-wrap">
+            <div class="cart-title">
+            <span>Your cart</span>
+            <span class="itemNum">3</span>
+            </div>
+
+            <div class="cart">
+            <div class="cart-row">
+                <div>
+                <div class="item-title">Product name</div>
+                <div class="item-desc">Brief description</div>
+                </div>
+                <div class="price">$12</div>
+            </div>
+
+            <div class="cart-row">
+                <div>
+                <div class="item-title">Second product</div>
+                <div class="item-desc">Brief description</div>
+                </div>
+                <div class="price">$8</div>
+            </div>
+
+            <div class="cart-row">
+                <div>
+                <div class="item-title">Third item</div>
+                <div class="item-desc">Brief description</div>
+                </div>
+                <div class="price">$5</div>
+            </div>
+
+            <div class="cart-row promo">
+                <div>
+                <div class="item-title">Promo code</div>
+                <div class="item-desc">EXAMPLECODE</div>
+                </div>
+                <div class="price">–$5</div>
+            </div>
+
+            <div class="cart-row total">
+                <div class="label">Total (USD)</div>
+                <div class="price">$20</div>
+            </div>
+            </div>
+
+            <div class="redeem">
+            <div class="input-group">
+                <input type="text" placeholder="Promo code" aria-label="Promo code">
+                <button type="button">Redeem</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+    <div class = "footprint container"> © 2024-2025 Company, Inc. All rights reserved.
+        <a href = "#"> Privacy</a>
+        <a href = "#"> Terms</a>
+        <a href = "#"> Support</a>
+    </div>
+
+</body>
+
+</html>
