@@ -6,7 +6,7 @@
     <title>form_nostyle.html</title>
 </head>
 <body>
-    <img src="./logo.img" alt="로고 이미지" >
+    <img src="./img.png" alt="로고 이미지" >
     
     <div> Checkout form</div>
     <div> Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</div>
@@ -107,11 +107,13 @@
 
             <div id = "row">
                 <label for = "expiration"> Expiration </label>
-                <input type="month" id="expirationDate" name="expirationDate" />
+                <input type="date" id="expirationDate" name="expirationDate" />
                 
                 <label for = "cvv"> CVV </label>
                 <input type = "text" id = "cvv" name = "cvv" />
             </div>
+
+            <br/><br/>
 
             <!-- 여기 구분선 -->
             <input type = "submit" value = "Continue to checkout" />
@@ -176,10 +178,13 @@
     </div>
 </div>
     <div class = "footprint container"> © 2024-2025 Company, Inc. All rights reserved.
+        <br/>
         <a href = "#"> Privacy</a>
         <a href = "#"> Terms</a>
         <a href = "#"> Support</a>
     </div>
+
+    
 
 </body>
 </html>

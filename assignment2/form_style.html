@@ -265,14 +265,21 @@
 
             <div id = "row">
                 <label for = "expiration"> Expiration </label>
-                <input type="month" id="expirationDate" name="expirationDate" />
+                <input type="date" id="expirationDate" name="expirationDate" />
                 
                 <label for = "cvv"> CVV </label>
                 <input type = "text" id = "cvv" name = "cvv" />
             </div>
 
+            <br/><br/>
+
             <!-- 여기 구분선 -->
-            <input type = "submit" value = "Continue to checkout" />
+            <input type = "submit" value = "Continue to checkout" 
+            onclick="alert('clicked!!')"
+            onmouseover="console.log('mouse in..');"
+            onmouseout="console.log('mouse out..') ;"
+            onmousedown="console.log('mouse pushed..');"
+            />
 
 
         </form>
@@ -335,11 +342,26 @@
 
 </div>
     <div class = "footprint container"> © 2024-2025 Company, Inc. All rights reserved.
+        
+        <br/>
         <a href = "#"> Privacy</a>
         <a href = "#"> Terms</a>
         <a href = "#"> Support</a>
     </div>
 
+    <script>
+
+        alert("장바구니의 결제를 완료하세요");
+        setInterval(function() {alert("세션이 만료됩니다.")}, 10000);
+        
+        
+
+    </script>
+
+    
 </body>
+
+
+
 
 </html>
