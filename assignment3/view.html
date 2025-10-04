@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>Fridge Manager - 보기</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="my.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+  (function (w){
+    const DEFAULT = { nextId: 1, items: [] };
+    function load(){
+      try{
+        if(!w.name) return structuredClone(DEFAULT);
+        const obj = JSON.parse(w.name);
+        if(!obj || !Array.isArray(obj.items) || !Number.isInteger(obj.nextId)) return structuredClone(DEFAULT);
+        return obj;
+      }catch(e){ return structuredClone(DEFAULT); }
+    }
+    function save(db){ w.name = JSON.stringify(db); }
+    const DB = {
+      _state: load(),
+      all(){ return this._state.items.slice(); },
+      get(id){ return this._state.items.find(x=> String(x.id)===String(id)); },
+      add(rec){ const id=this._state.nextId++; const item={id, ...rec}; this._state.items.unshift(item); save(this._state); return item; },
+      update(id, patch){ const i=this._state.items.findIndex(x=> String(x.id)===String(id)); if(i<0) return null; this._state.items[i] = { ...this._state.items[i], ...patch }; save(this._state); return this._state.items[i]; },
+      remove(id){ const before=this._state.items.length; this._state.items = this._state.items.filter(x=> String(x.id)!==String(id)); save(this._state); return this._state.items.length!==before; },
+      reset(){ this._state = structuredClone(DEFAULT); save(this._state); }
+    };
+    w.DB = DB;
+  })(window);
+  </script>
+</head>
+<body>
+  <div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h1 class="mb-0">제품 보기</h1>
+      <div class="d-flex gap-2">
+        <a href="add.html" class="btn btn-success">추가</a>
+        <a href="index.html" class="btn btn-secondary">목록</a>
+      </div>
+    </div>
+
+    <div id="detail" class="card shadow-sm">
+      <div class="card-body">로딩 중...</div>
+    </div>
+
+    <div class="mt-3 d-flex gap-2">
+      <a id="editBtn" href="#" class="btn btn-primary">수정</a>
+      <button id="delBtn" class="btn btn-danger">삭제</button>
+    </div>
+  </div>
+
+  <script>
+    const idParam = new URLSearchParams(location.search).get('id');
+    const id = Number(idParam);
+    const item = DB.get(id);
+
+    function isSmall(){
+      return window.matchMedia && window.matchMedia('(max-width: 475px)').matches;
+    }
+    function esc(s){ return String(s).replace(/[&<>\"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c])); }
+
+    function renderDetail(){
+      const container = document.getElementById('detail');
+      const body = container.querySelector('.card-body') || container.querySelector('div');
+      if(!item){
+        body.innerHTML = '<div class="text-danger">항목을 찾을 수 없습니다.</div>';
+        document.getElementById('editBtn').classList.add('disabled');
+        document.getElementById('delBtn').disabled = true;
+        return;
+      }
+
+      if(isSmall()){
+        // Mobile: sticky name bar + 3-line list
+        container.classList.add('as-list');
+        container.classList.remove('card','shadow-sm');
+        body.classList.remove('card-body');
+        body.innerHTML = `
+          <div class="mobile-head">${esc(item.name)}</div>
+          <ul class="list-group mobile-list">
+            <li class="list-group-item"><span class="label">종류</span><span>${esc(item.type)}</span></li>
+            <li class="list-group-item"><span class="label">소비기한</span><span>${esc(item.expire)}</span></li>
+            <li class="list-group-item"><span class="label">상태</span><span>${esc(item.status)}</span></li>
+          </ul>`;
+      } else {
+        // Desktop: full details in card
+        container.classList.remove('as-list');
+        if(!container.classList.contains('card')) container.classList.add('card');
+        if(!container.classList.contains('shadow-sm')) container.classList.add('shadow-sm');
+        if(!body.classList.contains('card-body')) body.classList.add('card-body');
+        body.innerHTML = `
+          <ul class="list-group">
+            <li class="list-group-item"><b>이름:</b> ${esc(item.name)}</li>
+            <li class="list-group-item"><b>종류:</b> ${esc(item.type)}</li>
+            <li class="list-group-item"><b>수량:</b> ${item.qty}</li>
+            <li class="list-group-item"><b>상태:</b> ${esc(item.status)}</li>
+            <li class="list-group-item"><b>구매일:</b> ${esc(item.buy)}</li>
+            <li class="list-group-item"><b>소비기한:</b> ${esc(item.expire)}</li>
+            <li class="list-group-item"><b>가격:</b> ${new Intl.NumberFormat('ko-KR').format(item.price)}원</li>
+            <li class="list-group-item"><b>메모:</b> ${esc(item.note || '-')}</li>
+          </ul>`;
+      }
+      document.getElementById('editBtn').href = 'edit.html?id=' + item.id;
+    }
+
+    document.getElementById('delBtn').addEventListener('click', ()=>{
+      if(confirm('게시물을 삭제할까요?')){
+        DB.remove(id);
+        alert('삭제되었습니다');
+        location.href = 'index.html';
+      }
+    });
+
+    renderDetail();
+    (function(){
+      const rerender = ()=>{ renderDetail(); };
+      if(window.matchMedia){
+        const mql = window.matchMedia('(max-width: 475px)');
+        if(typeof mql.addEventListener === 'function') mql.addEventListener('change', rerender);
+        else if(typeof mql.addListener === 'function') mql.addListener(rerender);
+      }
+      window.addEventListener('resize', rerender);
+    })();
+  </script>
+</body>
+</html>

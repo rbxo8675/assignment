@@ -1,0 +1,22 @@
+/* my.css (공통 스타일 + RWD) */
+body { background:#fafafa; }
+h1,h2 { margin-bottom:1rem; }
+.table th, .table td { vertical-align: middle; }
+
+/* 모바일 표를 카드형으로 */
+@media (max-width:475px){
+  .table-responsive thead{ display:none; }
+  .table-responsive tbody tr{ display:block;margin-bottom:.75rem;background:#fff;border-radius:.75rem; }
+  .table-responsive td{ display:flex;justify-content:space-between;padding:.5rem .75rem;border-top:none!important; }
+  .table-responsive td::before{ content:attr(data-label);font-weight:600;margin-right:1rem;color:#666; }
+}
+
+/* view.html: mobile detail layout (<=475px) */
+@media (max-width:475px){
+  #detail.as-list{ border:0; box-shadow:none; background:transparent; }
+  #detail.as-list .card-body{ padding:0; }
+  #detail.as-list .mobile-head{ position:sticky; top:0; z-index:1; background:#fff; padding:.75rem .9rem; border-bottom:1px solid #eee; font-weight:700; }
+  #detail.as-list .mobile-list .list-group-item{ display:flex; justify-content:space-between; }
+  #detail.as-list .mobile-list .label{ color:#666; font-weight:600; }
+}
+
