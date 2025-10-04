@@ -72,36 +72,36 @@
         return;
       }
 
-      if(isSmall()){
-        // Mobile: sticky name bar + 3-line list
-        container.classList.add('as-list');
-        container.classList.remove('card','shadow-sm');
-        body.classList.remove('card-body');
-        body.innerHTML = `
-          <div class="mobile-head">${esc(item.name)}</div>
-          <ul class="list-group mobile-list">
-            <li class="list-group-item"><span class="label">종류</span><span>${esc(item.type)}</span></li>
-            <li class="list-group-item"><span class="label">소비기한</span><span>${esc(item.expire)}</span></li>
-            <li class="list-group-item"><span class="label">상태</span><span>${esc(item.status)}</span></li>
-          </ul>`;
-      } else {
-        // Desktop: full details in card
-        container.classList.remove('as-list');
-        if(!container.classList.contains('card')) container.classList.add('card');
-        if(!container.classList.contains('shadow-sm')) container.classList.add('shadow-sm');
-        if(!body.classList.contains('card-body')) body.classList.add('card-body');
-        body.innerHTML = `
-          <ul class="list-group">
-            <li class="list-group-item"><b>이름:</b> ${esc(item.name)}</li>
-            <li class="list-group-item"><b>종류:</b> ${esc(item.type)}</li>
-            <li class="list-group-item"><b>수량:</b> ${item.qty}</li>
-            <li class="list-group-item"><b>상태:</b> ${esc(item.status)}</li>
-            <li class="list-group-item"><b>구매일:</b> ${esc(item.buy)}</li>
-            <li class="list-group-item"><b>소비기한:</b> ${esc(item.expire)}</li>
-            <li class="list-group-item"><b>가격:</b> ${new Intl.NumberFormat('ko-KR').format(item.price)}원</li>
-            <li class="list-group-item"><b>메모:</b> ${esc(item.note || '-')}</li>
-          </ul>`;
-      }
+      // if(isSmall()){
+      //   // Mobile: sticky name bar + 3-line list
+      //   container.classList.add('as-list');
+      //   container.classList.remove('card','shadow-sm');
+      //   body.classList.remove('card-body');
+      //   body.innerHTML = `
+      //     <div class="mobile-head">${esc(item.name)}</div>
+      //     <ul class="list-group mobile-list">
+      //       <li class="list-group-item"><span class="label">종류</span><span>${esc(item.type)}</span></li>
+      //       <li class="list-group-item"><span class="label">소비기한</span><span>${esc(item.expire)}</span></li>
+      //       <li class="list-group-item"><span class="label">상태</span><span>${esc(item.status)}</span></li>
+      //     </ul>`;
+      // } else {
+      //   // Desktop: full details in card
+      //   container.classList.remove('as-list');
+      //   if(!container.classList.contains('card')) container.classList.add('card');
+      //   if(!container.classList.contains('shadow-sm')) container.classList.add('shadow-sm');
+      //   if(!body.classList.contains('card-body')) body.classList.add('card-body');
+      //   body.innerHTML = `
+      //     <ul class="list-group">
+      //       <li class="list-group-item"><b>이름:</b> ${esc(item.name)}</li>
+      //       <li class="list-group-item"><b>종류:</b> ${esc(item.type)}</li>
+      //       <li class="list-group-item"><b>수량:</b> ${item.qty}</li>
+      //       <li class="list-group-item"><b>상태:</b> ${esc(item.status)}</li>
+      //       <li class="list-group-item"><b>구매일:</b> ${esc(item.buy)}</li>
+      //       <li class="list-group-item"><b>소비기한:</b> ${esc(item.expire)}</li>
+      //       <li class="list-group-item"><b>가격:</b> ${new Intl.NumberFormat('ko-KR').format(item.price)}원</li>
+      //       <li class="list-group-item"><b>메모:</b> ${esc(item.note || '-')}</li>
+      //     </ul>`;
+      // }
       document.getElementById('editBtn').href = 'edit.html?id=' + item.id;
     }
 
